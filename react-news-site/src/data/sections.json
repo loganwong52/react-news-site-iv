@@ -1,18 +1,22 @@
 [
   {
-    "label": "OPINION",
-    "value": "opinion"
+    "label": "COMMENT",
+    "value": "comment"
   },
   {
-    "label": "WORLD",
-    "value": "world"
+    "label": "POLL",
+    "value": "poll"
   },
   {
-    "label": "NATIONAL",
-    "value": "national"
+    "label": "POLLOPT",
+    "value": "pollopt"
   },
   {
-    "label": "BUSINESS",
-    "value": "business"
+    "label": "SHOW",
+    "value": "show_hn"
+  },
+  {
+    "label": "ASK",
+    "value": "ask_hn"
   }
 ]

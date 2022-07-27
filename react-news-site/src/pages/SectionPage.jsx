@@ -1,28 +1,30 @@
-import {useParams} from 'react-router-dom'
-import {useEffect, useState} from 'react'
+import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import ArticleList from '../components/ArticleList'
+import { fetchArticleBySection } from '../api/ArticlesAPI'
 
-function SectionPage ({articles}){
+function SectionPage({ articles }) {
 
     const { sectionName } = useParams()
     const [sectionArticles, setSectionArticles] = useState([])
 
-    useEffect( () => {
-        const filteredAtricles = articles.filter(article => article.section.toLowerCase() == sectionName.toLowerCase())
+    useEffect(() => {
+        fetchArticleBySection(sectionName).then((response) => {
+            console.log(response)
+            setSectionArticles(response.data.hits)
+        })
+        // const filteredAtricles = articles.filter(article => article.section.toLowerCase() == sectionName.toLowerCase())
 
-        setSectionArticles(filteredAtricles)
-        
-        console.log(filteredAtricles)
     }, [sectionName])
-    
 
-    return(
+
+    return (
         <div>
-        {sectionArticles 
-            ? <ArticleList articles={sectionArticles} />
-            : 'no articles found'
-        
-        }
+            {sectionArticles
+                ? <ArticleList articles={sectionArticles} />
+                : 'no articles found'
+
+            }
         </div>
     )
 }
