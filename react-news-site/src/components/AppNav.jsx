@@ -10,6 +10,21 @@ function AppNav({ articles, setShowArticles }) {
     const [navItems, setNavItems] = useState(sections)
     const [searchResults, setSearchResults] = useState([])
 
+
+    // if there are search results, then hide ALL ARTICLES
+    // but if there are 0 search results, then display ALL ARTICLES
+    useEffect(() => {
+        if (searchResults.length > 0) {
+            setShowArticles(false)
+        } else {
+            setShowArticles(true)
+        }
+
+    }, [searchResults])
+    // you don't have to worry about whether it's been updated correctly because
+    // it's inside useEffect, so it'll only run after searchResults has been updated
+    // asynchronously
+
     return (
         <div>
             <Navbar>
@@ -31,7 +46,7 @@ function AppNav({ articles, setShowArticles }) {
                         }))
                     }
                 </Nav>
-                <Search articles={articles} setSearchResults={setSearchResults} setShowArticles={setShowArticles} />
+                <Search articles={articles} setSearchResults={setSearchResults} />
 
             </Navbar>
 

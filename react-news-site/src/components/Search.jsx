@@ -19,11 +19,11 @@ function Search({ articles, setSearchResults, setShowArticles }) {
         if (searchTitle != '') {
             const filteredArticles = articles.filter(article => article.title.includes(searchTitle))
             setSearchResults(filteredArticles)
-            setShowArticles(false)
+            // setShowArticles(false)
         }
         else {
             setSearchResults([])
-            setShowArticles(true)
+            // setShowArticles(true)
         }
 
     }, [searchTitle])
