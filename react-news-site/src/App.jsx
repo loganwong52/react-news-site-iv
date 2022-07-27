@@ -27,6 +27,7 @@ function App() {
 
 
   const [articles, setArticles] = useState([])
+  const [showArticles, setShowArticles] = useState(true)
 
   const callAPI = () => {
     const date = Math.floor(Date.now() / 1000) - 86400
@@ -60,10 +61,10 @@ function App() {
   return (
     <div className="App">
 
-      <AppNav />
       <Router>
+        <AppNav articles={articles} setShowArticles={setShowArticles} />
         <Routes>
-          <Route path='/' element={<HomePage articles={articles} />} />
+          <Route path='/' element={<HomePage articles={articles} showArticles={showArticles} />} />
           <Route path='/articles/:articleID' element={<ArticlePage articles={articles} />} />
           <Route path='/sections/:sectionName' element={<SectionPage articles={articles} />} />
 

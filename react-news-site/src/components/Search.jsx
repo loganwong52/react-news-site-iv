@@ -1,12 +1,12 @@
 import Form from 'react-bootstrap/Form'
 import { useState, useEffect } from "react"
 import ArticleTeaser from "../components/ArticleTeaser"
+import { fetchArticles } from '../api/ArticlesAPI'
 
-
-function Search({ articles }) {
+function Search({ articles, setSearchResults, setShowArticles }) {
 
     const [searchTitle, setSearchTitle] = useState('')
-    const [results, setResults] = useState([])
+    // const [results, setResults] = useState([])
 
     const handleChange = (event) => {
         const value = event.target.value
@@ -18,10 +18,12 @@ function Search({ articles }) {
     useEffect(() => {
         if (searchTitle != '') {
             const filteredArticles = articles.filter(article => article.title.includes(searchTitle))
-            setResults(filteredArticles)
+            setSearchResults(filteredArticles)
+            setShowArticles(false)
         }
         else {
-            setResults([])
+            setSearchResults([])
+            setShowArticles(true)
         }
 
     }, [searchTitle])
@@ -37,17 +39,7 @@ function Search({ articles }) {
                 />
 
             </Form>
-            <div>
-                {
-                    results.length > 0
-                        ? <div >
-                            <h2>search results</h2>
-                            {results.map((article) => (
-                                <ArticleTeaser key={article.objectID} {...article} />
-                            ))}</div>
-                        : ''
-                }
-            </div>
+
         </div>
     )
 }

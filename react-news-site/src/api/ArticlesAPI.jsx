@@ -19,7 +19,7 @@ async function fetchArticleBySection(section) {
         params: {
             tags: (`${section}`),
             hitsPerPage: 50,
-            query: ('power', 'phone'),
+            // query: ('power', 'phone'),
         }
     })
 
@@ -36,7 +36,7 @@ async function fetchArticles(filters = null) {
         params: {
             tags: ('story'),
             hitsPerPage: 50,
-            query: ('power', 'phone')
+            query: (`${filters}`, 'author_'),
         }
     })
 
